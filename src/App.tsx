@@ -1,24 +1,22 @@
-import React from 'react';
+import React,{useState} from 'react';
 import logo from './logo.svg';
 import './App.css';
+import Timer from './Components/Timer';
+import ProgressBar from './Components/Progressbar';
+import Form from './Components/Form';
 
 function App() {
+  const [val, setVal] = useState<number>(10)
+  const setValuer = (e:React.ChangeEvent<HTMLInputElement>) => setVal(Number(e.target.value))
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Timer/>
+      <ProgressBar width={val} errorMsg = 'Input should be less than 100'/>
+      <form>
+          <label htmlFor="html">Input Percentage:</label>
+          <input type="number" onChange={(e)=>setValuer(e)} />
+        </form>
+        <Form/>
     </div>
   );
 }
